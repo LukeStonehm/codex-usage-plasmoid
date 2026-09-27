@@ -19,7 +19,7 @@ from typing import Any
 from urllib.parse import urlparse
 
 
-APP_VERSION = "1.2.1"
+APP_VERSION = "2.0.0"
 CLIENT_INFO = {
     "name": "kde_codex_usage",
     "title": "Codex Usage for KDE Plasma",

@@ -1,5 +1,15 @@
 # Changelog
 
+## 2.0.0 — 2026-09-27
+
+- Add a leading ChatGPT icon to the panel and popup.
+- Add saved Auto/Dark/Light appearance selection; Auto follows KDE theme colours.
+
+- Add a saved refresh interval control directly in the popup (1–1,440 minutes).
+- Show readable local dates and times with Today/Tomorrow labels.
+- Distinguish short and long usage windows with clock/calendar icons and theme colours, preserving low-remaining warnings.
+- Wrap long reset dates and give the popup more room for controls.
+
 ## 1.2.1 — 2026-09-27
 
 - Fix false timeouts when Codex sends multiple JSONL messages together.

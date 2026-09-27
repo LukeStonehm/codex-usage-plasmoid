@@ -18,7 +18,7 @@ Requires KDE Plasma 6, Python 3, a recent Codex CLI, and a ChatGPT account with 
 
 ## Current release
 
-Version 1.2.1 fixes intermittent usage timeouts caused by multiple Codex responses arriving together. Verified with the usage bridge and panel installation on Fedora KDE 44 (Plasma 6.7.5, Python 3.14.7, Codex 0.158.0-alpha.2.1). Tracks Codex subscription limits, not general ChatGPT message counts or API billing.
+Version 2.0.0 adds a saved refresh interval control, readable local dates and times, clock/calendar indicators, a leading ChatGPT icon, and Auto/Dark/Light appearance. Auto follows KDE’s theme. Includes the 1.2.1 timeout fix. Tracks Codex subscription limits, not general ChatGPT message counts or API billing.
 
 Download and upgrade instructions: https://github.com/thenailedone/codex-usage-plasmoid#install-a-release
 

@@ -7,6 +7,7 @@ import org.kde.plasma.components as PlasmaComponents
 ColumnLayout {
     id: section
 
+    required property string iconName
     required property string title
     required property int remaining
     required property string resetText
@@ -16,6 +17,13 @@ ColumnLayout {
 
     RowLayout {
         Layout.fillWidth: true
+
+        Kirigami.Icon {
+            source: section.iconName
+            implicitWidth: Kirigami.Units.iconSizes.smallMedium
+            implicitHeight: Kirigami.Units.iconSizes.smallMedium
+            color: section.accentColor
+        }
 
         PlasmaComponents.Label {
             text: section.title
@@ -42,7 +50,9 @@ ColumnLayout {
     }
 
     PlasmaComponents.Label {
-        text: i18n("Resets %1", section.resetText)
+        text: i18n("Resets: %1", section.resetText)
+        Layout.fillWidth: true
+        wrapMode: Text.Wrap
         color: Kirigami.Theme.disabledTextColor
         font: Kirigami.Theme.smallFont
     }

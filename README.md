@@ -11,7 +11,10 @@ This project is not affiliated with or endorsed by OpenAI or KDE.
 - Native Plasma 6 compact and expanded representations
 - Dynamic labels generated from Codex's reported window durations
 - Handles one, two, or multiple quota buckets without assuming a fixed schedule
-- Five-minute automatic refresh plus a manual refresh action
+- Configurable automatic refresh (1–1,440 minutes, five by default) plus manual refresh
+- ChatGPT icon identifies the widget; clock/calendar icons distinguish usage windows
+- Auto/Dark/Light appearance selection, saved per widget
+- Readable local reset dates and times, including Today and Tomorrow
 - ChatGPT sign-in through Codex's managed browser login
 - Reuses an existing Codex login without copying or exposing credentials
 - Clear states for missing Codex, signed-out accounts, and errors
@@ -42,14 +45,18 @@ Download the `.plasmoid` file from the [latest release](https://github.com/thena
 kpackagetool6 --type Plasma/Applet --install codex-usage-*.plasmoid
 ```
 
-Right-click your Plasma panel, enter **Edit Mode**, open **Add Widgets…**, and add **Codex Usage**. Click the widget to see full usage details or sign in if needed. It refreshes automatically every five minutes.
+Right-click your Plasma panel, enter **Edit Mode**, open **Add Widgets…**, and add **Codex Usage**. Click the widget to see full usage details or sign in if needed. It refreshes automatically every five minutes by default. In the popup, change **Refresh every … minutes** to save a different interval (1–1,440 minutes). Changes take effect immediately and persist for that widget. Press Enter after typing a value.
+
+Choose **Appearance → Auto** in the popup to follow KDE’s current theme and live colour changes, or select **Dark** or **Light** to override this widget only. The panel indicator gets a matching background in either forced mode so it stays legible even on an opposite-colour panel. Auto is the default.
+
+Clock icons identify windows shorter than a day; calendar icons identify day/week windows. Healthy short windows use the theme’s link colour and longer windows use its positive colour. Amber/red low-remaining warnings take priority. Reset and update times follow your local timezone and time format; nearby resets show Today or Tomorrow, while later ones show a full date.
 
 ### Upgrade an existing installation
 
 Download the new release archive, then run (substitute the downloaded filename):
 
 ```bash
-kpackagetool6 --type Plasma/Applet --upgrade codex-usage-1.2.1.plasmoid
+kpackagetool6 --type Plasma/Applet --upgrade codex-usage-2.0.0.plasmoid
 ```
 
 Use `--install` for a first installation and `--upgrade` for an existing one. Run these as your normal desktop user, without `sudo`. After upgrading, remove and re-add the panel widget, or log out and back in, to reload its QML. Signing in again is normally unnecessary.
