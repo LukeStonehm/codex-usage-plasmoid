@@ -19,7 +19,7 @@ from typing import Any
 from urllib.parse import urlparse
 
 
-APP_VERSION = "1.2.0"
+APP_VERSION = "1.2.1"
 CLIENT_INFO = {
     "name": "kde_codex_usage",
     "title": "Codex Usage for KDE Plasma",
@@ -97,6 +97,7 @@ class AppServer:
 
     def __init__(self, executable: str, timeout_seconds: float = 20.0) -> None:
         self.timeout_seconds = timeout_seconds
+        self._read_buffer = b""
         self.process = subprocess.Popen(
             [executable, "app-server", "--stdio"],
             stdin=subprocess.PIPE,
@@ -138,12 +139,20 @@ class AppServer:
         if self.process.stdout is None:
             raise BridgeError("Codex app server output is unavailable")
         timeout = self.timeout_seconds if timeout_seconds is None else timeout_seconds
-        readable, _, _ = select.select([self.process.stdout], [], [], timeout)
-        if not readable:
-            raise TimeoutError("Timed out while waiting for Codex")
-        line = self.process.stdout.readline()
-        if not line:
-            raise BridgeError("Codex app server closed unexpectedly")
+        # Read the pipe directly: TextIOWrapper read-ahead can hide complete
+        # messages from select(), causing false timeouts after notifications.
+        deadline = time.monotonic() + timeout
+        while b"\n" not in self._read_buffer:
+            readable, _, _ = select.select(
+                [self.process.stdout], [], [], max(0.0, deadline - time.monotonic())
+            )
+            if not readable:
+                raise TimeoutError("Timed out while waiting for Codex")
+            chunk = os.read(self.process.stdout.fileno(), 65536)
+            if not chunk:
+                raise BridgeError("Codex app server closed unexpectedly")
+            self._read_buffer += chunk
+        line, self._read_buffer = self._read_buffer.split(b"\n", 1)
         try:
             return json.loads(line)
         except json.JSONDecodeError as error:

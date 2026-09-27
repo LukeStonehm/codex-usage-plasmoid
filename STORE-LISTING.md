@@ -16,6 +16,12 @@ It uses the locally installed Codex app-server and Codex-managed ChatGPT sign-in
 
 Requires KDE Plasma 6, Python 3, a recent Codex CLI, and a ChatGPT account with Codex access.
 
+## Current release
+
+Version 1.2.1 fixes intermittent usage timeouts caused by multiple Codex responses arriving together. Verified with the usage bridge and panel installation on Fedora KDE 44 (Plasma 6.7.5, Python 3.14.7, Codex 0.158.0-alpha.2.1). Tracks Codex subscription limits, not general ChatGPT message counts or API billing.
+
+Download and upgrade instructions: https://github.com/thenailedone/codex-usage-plasmoid#install-a-release
+
 ## Category
 
 System Monitoring

@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.2.1 — 2026-09-27
+
+- Fix false timeouts when Codex sends multiple JSONL messages together.
+- Preserve partial messages and apply the read timeout while awaiting a full line.
+- Add regression coverage for buffered messages, partial responses, and closed pipes.
+- Document installation, upgrades, troubleshooting, and tested Fedora compatibility.
+
 ## 1.2.0 — 2026-09-20
 
 - Derive compact and expanded labels from each reported window duration.

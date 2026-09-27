@@ -1,6 +1,8 @@
 import importlib.util
+import os
 import pathlib
 import unittest
+from types import SimpleNamespace
 
 
 HELPER = pathlib.Path(__file__).parents[1] / "package/contents/code/fetch_usage.py"
@@ -10,6 +12,47 @@ SPEC.loader.exec_module(MODULE)
 
 
 class FetchUsageTests(unittest.TestCase):
+    def test_multiple_messages_in_one_pipe_write(self):
+        read_fd, write_fd = os.pipe()
+        try:
+            with os.fdopen(read_fd, "r") as stream:
+                server = MODULE.AppServer.__new__(MODULE.AppServer)
+                server.process = SimpleNamespace(stdout=stream)
+                server.timeout_seconds = 0.1
+                server._read_buffer = b""
+                os.write(write_fd, b'{"method":"notification"}\n{"id":1,"result":{}}\n')
+                self.assertEqual(server.read_message()["method"], "notification")
+                self.assertEqual(server.read_message()["id"], 1)
+        finally:
+            os.close(write_fd)
+
+    def test_partial_message_times_out_then_can_complete(self):
+        read_fd, write_fd = os.pipe()
+        try:
+            with os.fdopen(read_fd, "r") as stream:
+                server = MODULE.AppServer.__new__(MODULE.AppServer)
+                server.process = SimpleNamespace(stdout=stream)
+                server.timeout_seconds = 0.01
+                server._read_buffer = b""
+                os.write(write_fd, b'{"id":')
+                with self.assertRaises(TimeoutError):
+                    server.read_message()
+                os.write(write_fd, b'2}\n')
+                self.assertEqual(server.read_message(), {"id": 2})
+        finally:
+            os.close(write_fd)
+
+    def test_closed_pipe_reports_error(self):
+        read_fd, write_fd = os.pipe()
+        os.close(write_fd)
+        with os.fdopen(read_fd, "r") as stream:
+            server = MODULE.AppServer.__new__(MODULE.AppServer)
+            server.process = SimpleNamespace(stdout=stream)
+            server.timeout_seconds = 0.01
+            server._read_buffer = b""
+            with self.assertRaises(MODULE.BridgeError):
+                server.read_message()
+
     def test_remaining_is_clamped(self):
         self.assertEqual(MODULE.remaining({"usedPercent": -10})["remainingPercent"], 100)
         self.assertEqual(MODULE.remaining({"usedPercent": 40.5})["remainingPercent"], 60)
