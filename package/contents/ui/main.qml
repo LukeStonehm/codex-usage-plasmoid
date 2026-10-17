@@ -378,7 +378,7 @@ PlasmoidItem {
         }
     }
 
-    fullRepresentation: PlasmaComponents.ScrollView {
+    fullRepresentation: Item {
         id: popup
 
         readonly property real heightLimit: root.availableScreenRect.height > 0
@@ -390,11 +390,6 @@ PlasmoidItem {
         Layout.minimumHeight: implicitHeight
         Layout.preferredHeight: implicitHeight
         Layout.maximumHeight: implicitHeight
-        contentWidth: availableWidth
-        contentHeight: popupContents.implicitHeight
-        PlasmaComponents.ScrollBar.horizontal.policy: PlasmaComponents.ScrollBar.AlwaysOff
-        // The viewport clips content; allow the forced background to cover the dialog margins.
-        clip: false
         Kirigami.Theme.inherit: false
         Kirigami.Theme.backgroundColor: root.Kirigami.Theme.backgroundColor
         Kirigami.Theme.textColor: root.Kirigami.Theme.textColor
@@ -404,7 +399,7 @@ PlasmoidItem {
         Kirigami.Theme.neutralTextColor: root.Kirigami.Theme.neutralTextColor
         Kirigami.Theme.negativeTextColor: root.Kirigami.Theme.negativeTextColor
 
-        background: Rectangle {
+        Rectangle {
             anchors.fill: parent
             anchors.margins: -Kirigami.Units.largeSpacing
             z: -1
@@ -413,9 +408,31 @@ PlasmoidItem {
             radius: Kirigami.Units.smallSpacing
         }
 
+        // ScrollView consumes right-clicks instead of passing them to Plasma's context menu.
+        Flickable {
+            id: popupFlickable
+            anchors.fill: parent
+            contentWidth: width
+            contentHeight: popupContents.implicitHeight
+            flickableDirection: Flickable.VerticalFlick
+            boundsBehavior: Flickable.StopAtBounds
+            clip: true
+            focus: true
+            activeFocusOnTab: true
+
+            Keys.onUpPressed: popupScrollBar.decrease()
+            Keys.onDownPressed: popupScrollBar.increase()
+
+            PlasmaComponents.ScrollBar.vertical: PlasmaComponents.ScrollBar {
+                id: popupScrollBar
+                policy: PlasmaComponents.ScrollBar.AsNeeded
+            }
+        }
+
         ColumnLayout {
             id: popupContents
-            width: popup.availableWidth
+            parent: popupFlickable.contentItem
+            width: popupFlickable.width - (popupScrollBar.visible ? popupScrollBar.width : 0)
             spacing: Kirigami.Units.largeSpacing
 
             RowLayout {
