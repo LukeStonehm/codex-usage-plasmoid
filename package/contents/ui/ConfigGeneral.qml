@@ -10,6 +10,11 @@ Kirigami.FormLayout {
     property string cfg_appearance: "auto"
     property alias cfg_refreshIntervalMinutes: refreshInterval.value
 
+    Item {
+        Kirigami.FormData.label: i18n("General")
+        Kirigami.FormData.isSection: true
+    }
+
     QQC2.ComboBox {
         Kirigami.FormData.label: i18n("Appearance:")
         model: [i18n("Auto"), i18n("Dark"), i18n("Light")]
