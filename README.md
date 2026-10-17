@@ -39,7 +39,7 @@ Version 1.2.1 fixes a pipe-buffering bug that could cause a false timeout when s
 
 ## Install a release
 
-Download the `.plasmoid` file from the [latest release](https://github.com/thenailedone/codex-usage-plasmoid/releases/latest), then run:
+Download the `.plasmoid` file from the [latest release](https://github.com/sthuizen/codex-usage-plasmoid/releases/latest), then run:
 
 ```bash
 kpackagetool6 --type Plasma/Applet --install codex-usage-*.plasmoid
@@ -64,7 +64,7 @@ Use `--install` for a first installation and `--upgrade` for an existing one. Ru
 ## Install from source
 
 ```bash
-git clone https://github.com/thenailedone/codex-usage-plasmoid.git
+git clone https://github.com/sthuizen/codex-usage-plasmoid.git
 cd codex-usage-plasmoid
 ./scripts/install.sh
 ```
@@ -90,7 +90,7 @@ Run the installed bridge directly to isolate account/network issues from the pan
 python3 ~/.local/share/plasma/plasmoids/io.github.thenailedone.codexusage/contents/code/fetch_usage.py usage
 ```
 
-When [reporting an issue](https://github.com/thenailedone/codex-usage-plasmoid/issues), include the widget version, distribution, Plasma/Python/Codex versions, the error message, and reproduction steps. Review diagnostic output before sharing: it includes account plan, usage, and reset times. Never attach credential files or access tokens.
+When [reporting an issue](https://github.com/sthuizen/codex-usage-plasmoid/issues), include the widget version, distribution, Plasma/Python/Codex versions, the error message, and reproduction steps. Review diagnostic output before sharing: it includes account plan, usage, and reset times. Never attach credential files or access tokens.
 
 ## Development and validation
 

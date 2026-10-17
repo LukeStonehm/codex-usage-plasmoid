@@ -20,7 +20,7 @@ Requires KDE Plasma 6, Python 3, a recent Codex CLI, and a ChatGPT account with 
 
 Version 2.0.0 adds a saved refresh interval control, readable local dates and times, clock/calendar indicators, a leading ChatGPT icon, and Auto/Dark/Light appearance. Auto follows KDE’s theme. Includes the 1.2.1 timeout fix. Tracks Codex subscription limits, not general ChatGPT message counts or API billing.
 
-Download and upgrade instructions: https://github.com/thenailedone/codex-usage-plasmoid#install-a-release
+Download and upgrade instructions: https://github.com/sthuizen/codex-usage-plasmoid#install-a-release
 
 ## Category
 
@@ -32,6 +32,6 @@ Codex, OpenAI, usage, quota, limits, system monitor, Plasma 6
 
 ## Links
 
-- Source: https://github.com/thenailedone/codex-usage-plasmoid
-- Issues: https://github.com/thenailedone/codex-usage-plasmoid/issues
+- Source: https://github.com/sthuizen/codex-usage-plasmoid
+- Issues: https://github.com/sthuizen/codex-usage-plasmoid/issues
 - License: MIT

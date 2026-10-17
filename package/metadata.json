@@ -2,7 +2,7 @@
     "KPlugin": {
         "Authors": [
             {
-                "Name": "thenailedone"
+                "Name": "sthuizen"
             }
         ],
         "Category": "System Information",
@@ -12,8 +12,8 @@
         "License": "MIT",
         "Name": "Codex Usage",
         "Version": "2.0.0",
-        "Website": "https://github.com/thenailedone/codex-usage-plasmoid",
-        "BugReportUrl": "https://github.com/thenailedone/codex-usage-plasmoid/issues"
+        "Website": "https://github.com/sthuizen/codex-usage-plasmoid",
+        "BugReportUrl": "https://github.com/sthuizen/codex-usage-plasmoid/issues"
     },
     "KPackageStructure": "Plasma/Applet",
     "X-Plasma-API-Minimum-Version": "6.0"
