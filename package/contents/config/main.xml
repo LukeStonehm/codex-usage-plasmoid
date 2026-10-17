@@ -12,5 +12,9 @@
       <label>Widget appearance: auto, dark, or light</label>
       <default>auto</default>
     </entry>
+    <entry name="showRefreshSpinner" type="Bool">
+      <label>Show the refresh spinner in the panel</label>
+      <default>true</default>
+    </entry>
   </group>
 </kcfg>
