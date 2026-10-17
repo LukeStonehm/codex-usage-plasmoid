@@ -12,6 +12,7 @@ KCM.SimpleKCM {
 
     property string cfg_appearance: "auto"
     property alias cfg_refreshIntervalMinutes: refreshInterval.value
+    property alias cfg_showRefreshSpinner: showRefreshSpinner.checked
 
     Kirigami.FormLayout {
         QQC2.ComboBox {
@@ -36,6 +37,13 @@ KCM.SimpleKCM {
             QQC2.Label {
                 text: i18n("minutes")
             }
+        }
+
+        QQC2.Switch {
+            id: showRefreshSpinner
+            Kirigami.FormData.label: i18n("Panel indicator:")
+            text: i18n("Show refresh spinner")
+            checked: true
         }
     }
 }

@@ -25,6 +25,7 @@ PlasmoidItem {
     readonly property int compactWindowLimit: 2
     readonly property int refreshMinutes: Math.max(1, Math.min(1440,
         Number(Plasmoid.configuration.refreshIntervalMinutes) || 5))
+    readonly property bool showRefreshSpinner: Plasmoid.configuration.showRefreshSpinner
     property date currentTime: new Date()
 
     readonly property string appearance: ["auto", "dark", "light"].indexOf(Plasmoid.configuration.appearance) >= 0
@@ -369,7 +370,7 @@ PlasmoidItem {
             }
 
             PlasmaComponents.BusyIndicator {
-                visible: root.loading
+                visible: root.loading && root.showRefreshSpinner
                 running: visible
                 implicitWidth: Kirigami.Units.iconSizes.small
                 implicitHeight: Kirigami.Units.iconSizes.small
