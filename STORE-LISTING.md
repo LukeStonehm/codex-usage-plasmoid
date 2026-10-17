@@ -18,7 +18,7 @@ Requires KDE Plasma 6, Python 3, a recent Codex CLI, and a ChatGPT account with 
 
 ## Current release
 
-Version 2.0.0 adds a saved refresh interval control, readable local dates and times, clock/calendar indicators, a leading ChatGPT icon, and Auto/Dark/Light appearance. Auto follows KDE’s theme. Includes the 1.2.1 timeout fix. Tracks Codex subscription limits, not general ChatGPT message counts or API billing.
+Version 2.1.0 moves appearance and refresh settings into the native configuration dialog, adds an optional panel refresh spinner, and makes the popup fit its content with right-aligned details and scrolling for overflow. It also improves authentication recovery and app-server cleanup. Tracks Codex subscription limits, not general ChatGPT message counts or API billing.
 
 Download and upgrade instructions: https://github.com/sthuizen/codex-usage-plasmoid#install-a-release
 

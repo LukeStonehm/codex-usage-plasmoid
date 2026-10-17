@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.1.0 — 2026-10-17
+
+- Move appearance and refresh controls to the native widget configuration dialog.
+- Add an optional panel refresh spinner, enabled by default.
+- Fit the popup to its content, right-align account details, and scroll overflow while preserving Plasma's native context menu.
+- Clear stale account data when authentication or the Codex executable becomes unavailable.
+- Clean up app-server processes and pipes when initialization fails.
+
 ## 2.0.0 — 2026-09-27
 
 - Add a leading ChatGPT icon to the panel and popup.

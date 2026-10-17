@@ -58,7 +58,7 @@ Clock icons identify windows shorter than a day; calendar icons identify day/wee
 Download the new release archive, then run (substitute the downloaded filename):
 
 ```bash
-kpackagetool6 --type Plasma/Applet --upgrade codex-usage-2.0.0.plasmoid
+kpackagetool6 --type Plasma/Applet --upgrade codex-usage-2.1.0.plasmoid
 ```
 
 Use `--install` for a first installation and `--upgrade` for an existing one. Run these as your normal desktop user, without `sudo`. After upgrading, remove and re-add the panel widget, or log out and back in, to reload its QML. Signing in again is normally unnecessary.
