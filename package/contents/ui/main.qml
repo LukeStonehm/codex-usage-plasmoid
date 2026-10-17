@@ -377,10 +377,23 @@ PlasmoidItem {
         }
     }
 
-    fullRepresentation: Item {
+    fullRepresentation: PlasmaComponents.ScrollView {
+        id: popup
+
+        readonly property real heightLimit: root.availableScreenRect.height > 0
+            ? root.availableScreenRect.height * 0.8 : Kirigami.Units.gridUnit * 30
+
+        implicitHeight: Math.min(popupContents.implicitHeight, heightLimit)
         Layout.minimumWidth: Kirigami.Units.gridUnit * 19
         Layout.preferredWidth: Kirigami.Units.gridUnit * 21
-        Layout.minimumHeight: Kirigami.Units.gridUnit * 20
+        Layout.minimumHeight: implicitHeight
+        Layout.preferredHeight: implicitHeight
+        Layout.maximumHeight: implicitHeight
+        contentWidth: availableWidth
+        contentHeight: popupContents.implicitHeight
+        PlasmaComponents.ScrollBar.horizontal.policy: PlasmaComponents.ScrollBar.AlwaysOff
+        // The viewport clips content; allow the forced background to cover the dialog margins.
+        clip: false
         Kirigami.Theme.inherit: false
         Kirigami.Theme.backgroundColor: root.Kirigami.Theme.backgroundColor
         Kirigami.Theme.textColor: root.Kirigami.Theme.textColor
@@ -390,7 +403,7 @@ PlasmoidItem {
         Kirigami.Theme.neutralTextColor: root.Kirigami.Theme.neutralTextColor
         Kirigami.Theme.negativeTextColor: root.Kirigami.Theme.negativeTextColor
 
-        Rectangle {
+        background: Rectangle {
             anchors.fill: parent
             anchors.margins: -Kirigami.Units.largeSpacing
             z: -1
@@ -400,7 +413,8 @@ PlasmoidItem {
         }
 
         ColumnLayout {
-            anchors.fill: parent
+            id: popupContents
+            width: popup.availableWidth
             spacing: Kirigami.Units.largeSpacing
 
             RowLayout {
@@ -452,9 +466,8 @@ PlasmoidItem {
                 visible: !root.hasData
                 spacing: Kirigami.Units.largeSpacing
                 Layout.fillWidth: true
-                Layout.fillHeight: true
-
-                Item { Layout.fillHeight: true }
+                Layout.topMargin: Kirigami.Units.largeSpacing
+                Layout.bottomMargin: Kirigami.Units.largeSpacing
 
                 Kirigami.Icon {
                     source: root.accountState === "codex_missing" ? "application-x-executable" : "user-identity"
@@ -497,8 +510,6 @@ PlasmoidItem {
                     Layout.alignment: Qt.AlignHCenter
                     onClicked: root.refresh()
                 }
-
-                Item { Layout.fillHeight: true }
             }
 
             GridLayout {
@@ -512,21 +523,30 @@ PlasmoidItem {
                 PlasmaComponents.Label {
                     text: root.planText()
                     font.weight: Font.DemiBold
-                    Layout.alignment: Qt.AlignRight
+                    Layout.fillWidth: true
+                    Layout.minimumWidth: 0
+                    horizontalAlignment: Text.AlignRight
+                    wrapMode: Text.Wrap
                 }
 
                 PlasmaComponents.Label { text: i18n("Additional credits") }
                 PlasmaComponents.Label {
                     text: root.creditBalance
                     font.weight: Font.DemiBold
-                    Layout.alignment: Qt.AlignRight
+                    Layout.fillWidth: true
+                    Layout.minimumWidth: 0
+                    horizontalAlignment: Text.AlignRight
+                    wrapMode: Text.Wrap
                 }
 
                 PlasmaComponents.Label { text: i18n("Reset credits") }
                 PlasmaComponents.Label {
                     text: root.resetCredits.toString()
                     font.weight: Font.DemiBold
-                    Layout.alignment: Qt.AlignRight
+                    Layout.fillWidth: true
+                    Layout.minimumWidth: 0
+                    horizontalAlignment: Text.AlignRight
+                    wrapMode: Text.Wrap
                 }
 
                 PlasmaComponents.Label { text: i18n("Status") }
@@ -536,7 +556,10 @@ PlasmoidItem {
                         ? Kirigami.Theme.negativeTextColor
                         : Kirigami.Theme.positiveTextColor
                     font.weight: Font.DemiBold
-                    Layout.alignment: Qt.AlignRight
+                    Layout.fillWidth: true
+                    Layout.minimumWidth: 0
+                    horizontalAlignment: Text.AlignRight
+                    wrapMode: Text.Wrap
                 }
             }
 
@@ -547,8 +570,6 @@ PlasmoidItem {
                 wrapMode: Text.Wrap
                 Layout.fillWidth: true
             }
-
-            Item { Layout.fillHeight: true }
 
             PlasmaComponents.Label {
                 visible: root.hasData
