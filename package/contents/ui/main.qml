@@ -1,5 +1,4 @@
 import QtQuick
-import QtQuick.Controls.Basic as Basic
 import QtQuick.Layouts
 
 import org.kde.kirigami as Kirigami
@@ -381,7 +380,7 @@ PlasmoidItem {
     fullRepresentation: Item {
         Layout.minimumWidth: Kirigami.Units.gridUnit * 19
         Layout.preferredWidth: Kirigami.Units.gridUnit * 21
-        Layout.minimumHeight: Kirigami.Units.gridUnit * 26
+        Layout.minimumHeight: Kirigami.Units.gridUnit * 20
         Kirigami.Theme.inherit: false
         Kirigami.Theme.backgroundColor: root.Kirigami.Theme.backgroundColor
         Kirigami.Theme.textColor: root.Kirigami.Theme.textColor
@@ -550,54 +549,6 @@ PlasmoidItem {
             }
 
             Item { Layout.fillHeight: true }
-
-            RowLayout {
-                Layout.fillWidth: true
-                PlasmaComponents.Label {
-                    text: i18n("Appearance")
-                    Layout.fillWidth: true
-                }
-                Basic.ComboBox {
-                    palette.window: root.Kirigami.Theme.backgroundColor
-                    palette.base: root.Kirigami.Theme.backgroundColor
-                    palette.button: root.Kirigami.Theme.backgroundColor
-                    palette.text: root.Kirigami.Theme.textColor
-                    palette.buttonText: root.Kirigami.Theme.textColor
-                    palette.windowText: root.Kirigami.Theme.textColor
-                    palette.highlight: root.Kirigami.Theme.linkColor
-                    palette.highlightedText: root.darkAppearance ? "#232629" : "#ffffff"
-                    model: [i18n("Auto"), i18n("Dark"), i18n("Light")]
-                    currentIndex: ["auto", "dark", "light"].indexOf(root.appearance)
-                    onActivated: index => Plasmoid.configuration.appearance = ["auto", "dark", "light"][index]
-                    Accessible.name: i18n("Widget appearance")
-                }
-            }
-
-            RowLayout {
-                Layout.fillWidth: true
-                PlasmaComponents.Label {
-                    text: i18n("Refresh every")
-                    Layout.fillWidth: true
-                }
-                Basic.SpinBox {
-                    palette.window: root.Kirigami.Theme.backgroundColor
-                    palette.base: root.Kirigami.Theme.backgroundColor
-                    palette.button: root.Kirigami.Theme.backgroundColor
-                    palette.text: root.Kirigami.Theme.textColor
-                    palette.buttonText: root.Kirigami.Theme.textColor
-                    palette.windowText: root.Kirigami.Theme.textColor
-                    palette.highlight: root.Kirigami.Theme.linkColor
-                    palette.highlightedText: root.darkAppearance ? "#232629" : "#ffffff"
-                    id: refreshInterval
-                    from: 1
-                    to: 1440
-                    editable: true
-                    value: root.refreshMinutes
-                    Accessible.name: i18n("Automatic refresh interval in minutes")
-                    onValueModified: Plasmoid.configuration.refreshIntervalMinutes = value
-                }
-                PlasmaComponents.Label { text: i18n("minutes") }
-            }
 
             PlasmaComponents.Label {
                 visible: root.hasData
