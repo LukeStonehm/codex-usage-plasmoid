@@ -13,6 +13,7 @@ KCM.SimpleKCM {
     property string cfg_appearance: "auto"
     property alias cfg_refreshIntervalMinutes: refreshInterval.value
     property alias cfg_showRefreshSpinner: showRefreshSpinner.checked
+    property alias cfg_monochromePanelText: monochromePanelText.checked
 
     Kirigami.FormLayout {
         QQC2.ComboBox {
@@ -44,6 +45,11 @@ KCM.SimpleKCM {
             Kirigami.FormData.label: i18n("Panel indicator:")
             text: i18n("Show refresh spinner")
             checked: true
+        }
+
+        QQC2.Switch {
+            id: monochromePanelText
+            text: i18n("Use monochrome text")
         }
     }
 }

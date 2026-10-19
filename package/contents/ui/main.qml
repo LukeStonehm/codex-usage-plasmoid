@@ -26,6 +26,7 @@ PlasmoidItem {
     readonly property int refreshMinutes: Math.max(1, Math.min(1440,
         Number(Plasmoid.configuration.refreshIntervalMinutes) || 5))
     readonly property bool showRefreshSpinner: Plasmoid.configuration.showRefreshSpinner
+    readonly property bool monochromePanelText: Plasmoid.configuration.monochromePanelText
     property date currentTime: new Date()
 
     readonly property string appearance: ["auto", "dark", "light"].indexOf(Plasmoid.configuration.appearance) >= 0
@@ -339,7 +340,8 @@ PlasmoidItem {
                     PlasmaComponents.Label {
                         text: root.durationShort(modelData.windowDurationMins)
                             + " " + root.percentText(modelData.remainingPercent)
-                        color: root.usageColor(modelData.remainingPercent, modelData.windowDurationMins)
+                        color: root.monochromePanelText ? Kirigami.Theme.textColor
+                            : root.usageColor(modelData.remainingPercent, modelData.windowDurationMins)
                         font.weight: Font.DemiBold
                     }
                 }
@@ -348,7 +350,7 @@ PlasmoidItem {
             PlasmaComponents.Label {
                 visible: root.usageWindows.length > root.compactWindowLimit
                 text: i18n("+%1", root.usageWindows.length - root.compactWindowLimit)
-                color: Kirigami.Theme.disabledTextColor
+                color: root.monochromePanelText ? Kirigami.Theme.textColor : Kirigami.Theme.disabledTextColor
                 font.weight: Font.DemiBold
             }
 
@@ -363,7 +365,7 @@ PlasmoidItem {
                         return i18n("Install Codex")
                     return i18n("Unavailable")
                 }
-                color: root.accountState === "ready"
+                color: root.monochromePanelText || root.accountState === "ready"
                     ? Kirigami.Theme.textColor
                     : Kirigami.Theme.neutralTextColor
                 font.weight: Font.DemiBold

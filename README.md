@@ -51,6 +51,8 @@ In the same configuration page, choose **Appearance → Auto** to follow KDE’s
 
 The panel's refresh spinner is enabled by default. Turn off **Panel indicator → Show refresh spinner** in the same configuration page to hide it without disabling refreshes.
 
+Enable **Panel indicator → Use monochrome text** to use the theme's foreground colour for taskbar text instead of usage colours. This is off by default and does not change the popup or icon colours.
+
 Clock icons identify windows shorter than a day; calendar icons identify day/week windows. Healthy short windows use the theme’s link colour and longer windows use its positive colour. Amber/red low-remaining warnings take priority. Reset and update times follow your local timezone and time format; nearby resets show Today or Tomorrow, while later ones show a full date.
 
 ### Upgrade an existing installation
