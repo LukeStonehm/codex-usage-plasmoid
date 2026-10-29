@@ -51,6 +51,8 @@ In the same configuration page, choose **Appearance → Auto** to follow KDE’s
 
 The panel's refresh spinner is enabled by default. Turn off **Panel indicator → Show refresh spinner** in the same configuration page to hide it without disabling refreshes.
 
+Turn off **Panel indicator → Show usage window icons** to hide the taskbar's clock/calendar icons while keeping the ChatGPT logo and usage text. This is on by default and does not change the popup icons.
+
 Enable **Panel indicator → Use monochrome text** to use the theme's foreground colour for taskbar text instead of usage colours. This is off by default and does not change the popup or icon colours.
 
 Clock icons identify windows shorter than a day; calendar icons identify day/week windows. Healthy short windows use the theme’s link colour and longer windows use its positive colour. Amber/red low-remaining warnings take priority. Reset and update times follow your local timezone and time format; nearby resets show Today or Tomorrow, while later ones show a full date.
@@ -60,7 +62,7 @@ Clock icons identify windows shorter than a day; calendar icons identify day/wee
 Download the new release archive, then run (substitute the downloaded filename):
 
 ```bash
-kpackagetool6 --type Plasma/Applet --upgrade codex-usage-2.1.0.plasmoid
+kpackagetool6 --type Plasma/Applet --upgrade codex-usage-2.2.0.plasmoid
 ```
 
 Use `--install` for a first installation and `--upgrade` for an existing one. Run these as your normal desktop user, without `sudo`. After upgrading, remove and re-add the panel widget, or log out and back in, to reload its QML. Signing in again is normally unnecessary.

@@ -18,7 +18,7 @@ Requires KDE Plasma 6, Python 3, a recent Codex CLI, and a ChatGPT account with 
 
 ## Current release
 
-Version 2.1.0 moves appearance and refresh settings into the native configuration dialog, adds an optional panel refresh spinner, and makes the popup fit its content with right-aligned details and scrolling for overflow. It also improves authentication recovery and app-server cleanup. Tracks Codex subscription limits, not general ChatGPT message counts or API billing.
+Version 2.2.0 adds optional monochrome taskbar text and a setting to hide the panel's clock/calendar usage-window icons without hiding the ChatGPT logo or percentages. Existing colours and icons remain the default, and popup styling is unchanged. Tracks Codex subscription limits, not general ChatGPT message counts or API billing.
 
 Download and upgrade instructions: https://github.com/sthuizen/codex-usage-plasmoid#install-a-release
 

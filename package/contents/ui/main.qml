@@ -26,6 +26,7 @@ PlasmoidItem {
     readonly property int refreshMinutes: Math.max(1, Math.min(1440,
         Number(Plasmoid.configuration.refreshIntervalMinutes) || 5))
     readonly property bool showRefreshSpinner: Plasmoid.configuration.showRefreshSpinner
+    readonly property bool showPanelWindowIcons: Plasmoid.configuration.showPanelWindowIcons
     readonly property bool monochromePanelText: Plasmoid.configuration.monochromePanelText
     property date currentTime: new Date()
 
@@ -331,6 +332,7 @@ PlasmoidItem {
                     spacing: Kirigami.Units.smallSpacing
 
                     Kirigami.Icon {
+                        visible: root.showPanelWindowIcons
                         source: root.windowIcon(modelData.windowDurationMins)
                         implicitWidth: Kirigami.Units.iconSizes.small
                         implicitHeight: Kirigami.Units.iconSizes.small

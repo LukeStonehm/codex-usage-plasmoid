@@ -13,6 +13,7 @@ KCM.SimpleKCM {
     property string cfg_appearance: "auto"
     property alias cfg_refreshIntervalMinutes: refreshInterval.value
     property alias cfg_showRefreshSpinner: showRefreshSpinner.checked
+    property alias cfg_showPanelWindowIcons: showPanelWindowIcons.checked
     property alias cfg_monochromePanelText: monochromePanelText.checked
 
     Kirigami.FormLayout {
@@ -44,6 +45,12 @@ KCM.SimpleKCM {
             id: showRefreshSpinner
             Kirigami.FormData.label: i18n("Panel indicator:")
             text: i18n("Show refresh spinner")
+            checked: true
+        }
+
+        QQC2.Switch {
+            id: showPanelWindowIcons
+            text: i18n("Show usage window icons")
             checked: true
         }
 

@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.2.0 — 2026-10-29
+
+- Add optional theme-coloured monochrome text for the taskbar indicator.
+- Add a setting to hide the taskbar's clock/calendar usage-window icons, preserving the ChatGPT logo and usage text.
+- Keep existing panel colours and icons by default; popup styling is unchanged.
+
 ## 2.1.0 — 2026-10-17
 
 - Move appearance and refresh controls to the native widget configuration dialog.
