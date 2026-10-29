@@ -16,6 +16,10 @@
       <label>Show the refresh spinner in the panel</label>
       <default>true</default>
     </entry>
+    <entry name="showPanelWindowIcons" type="Bool">
+      <label>Show usage window icons in the panel</label>
+      <default>true</default>
+    </entry>
     <entry name="monochromePanelText" type="Bool">
       <label>Use the theme text colour for the panel indicator</label>
       <default>false</default>

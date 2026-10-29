@@ -11,7 +11,7 @@
         "Id": "io.github.thenailedone.codexusage",
         "License": "MIT",
         "Name": "Codex Usage",
-        "Version": "2.1.0",
+        "Version": "2.2.0",
         "Website": "https://github.com/sthuizen/codex-usage-plasmoid",
         "BugReportUrl": "https://github.com/sthuizen/codex-usage-plasmoid/issues"
     },
